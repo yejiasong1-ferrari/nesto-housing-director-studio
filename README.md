@@ -86,8 +86,6 @@ PYTHONPATH=system uvicorn backend.main:app --host 127.0.0.1 --port 8000
 
 Open `http://127.0.0.1:8000/docs` for the API. For the Studio, invite setup, provider configuration, and worker startup, follow [LOCAL_SETUP.md](docs/LOCAL_SETUP.md).
 
-## About this repository
-
 ## Validation
 
 The public snapshot passes 54 existing timeline and evaluation tests:

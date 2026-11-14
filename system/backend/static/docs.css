@@ -1,0 +1,213 @@
+/* Nesto Swagger UI — cleaner layout, fix clipped Execute buttons */
+
+:root {
+  --nesto-ink: #162b49;
+  --nesto-gold: #c8a96e;
+  --nesto-bg: #faf8f3;
+  --nesto-line: #e8e1d5;
+  --nesto-muted: #5c6b7a;
+  --nesto-panel: #ffffff;
+}
+
+html, body {
+  margin: 0;
+  background: var(--nesto-bg) !important;
+}
+
+/* Top bar */
+.swagger-ui .topbar {
+  background: var(--nesto-ink) !important;
+  padding: 14px 0 !important;
+  border-bottom: 3px solid var(--nesto-gold);
+}
+.swagger-ui .topbar .download-url-wrapper { display: none; }
+.swagger-ui .topbar a { visibility: hidden; }
+
+/* Page width & typography */
+.swagger-ui .wrapper {
+  max-width: 1080px;
+  padding: 0 20px 64px;
+}
+.swagger-ui .info {
+  margin: 28px 0 20px;
+}
+.swagger-ui .info .title {
+  font-family: "Fraunces", "PingFang SC", Georgia, serif !important;
+  color: var(--nesto-ink) !important;
+  font-size: 1.75rem !important;
+}
+.swagger-ui .info .description,
+.swagger-ui .info .description p,
+.swagger-ui .info .description li,
+.swagger-ui .info .description td {
+  color: var(--nesto-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
+.swagger-ui .info .description table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+.swagger-ui .info .description th,
+.swagger-ui .info .description td {
+  border: 1px solid var(--nesto-line);
+  padding: 8px 12px;
+  background: var(--nesto-panel);
+}
+.swagger-ui .info .description th {
+  background: #f3efe6;
+  color: var(--nesto-ink) !important;
+  font-weight: 600;
+}
+
+/* Filter */
+.swagger-ui .filter-container {
+  margin: 0 0 16px !important;
+}
+.swagger-ui .filter-container .operation-filter-input {
+  border: 1px solid var(--nesto-line) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  background: var(--nesto-panel) !important;
+}
+
+/* Tag groups */
+.swagger-ui .opblock-tag {
+  border-bottom: 1px solid var(--nesto-line) !important;
+  color: var(--nesto-ink) !important;
+  font-size: 1.05rem !important;
+  padding: 12px 0 !important;
+}
+.swagger-ui .opblock-tag small {
+  color: var(--nesto-muted) !important;
+  font-size: 0.85rem !important;
+}
+
+/* Operation blocks */
+.swagger-ui .opblock {
+  border-radius: 12px !important;
+  border: 1px solid var(--nesto-line) !important;
+  box-shadow: none !important;
+  margin: 0 0 12px !important;
+  background: var(--nesto-panel) !important;
+  overflow: visible !important;
+}
+.swagger-ui .opblock .opblock-summary {
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+}
+.swagger-ui .opblock.opblock-post { border-color: #b7d4c8 !important; background: #f7fbf9 !important; }
+.swagger-ui .opblock.opblock-get { border-color: #c5d4e8 !important; background: #f7f9fc !important; }
+.swagger-ui .opblock.opblock-post .opblock-summary-method { background: #3a9d9a !important; }
+.swagger-ui .opblock.opblock-get .opblock-summary-method { background: #162b49 !important; }
+
+/* Critical: stop clipping Try it out / Execute */
+.swagger-ui .opblock-body {
+  overflow: visible !important;
+  padding-bottom: 8px !important;
+}
+.swagger-ui .opblock-section {
+  overflow: visible !important;
+}
+.swagger-ui .opblock-section-header {
+  overflow: visible !important;
+  min-height: auto !important;
+}
+.swagger-ui .parameters-container,
+.swagger-ui .table-container {
+  overflow: visible !important;
+  padding-bottom: 8px !important;
+}
+.swagger-ui table.parameters {
+  width: 100% !important;
+  table-layout: auto !important;
+}
+.swagger-ui .parameters-col_name {
+  min-width: 120px;
+  vertical-align: top !important;
+}
+.swagger-ui .parameters-col_description {
+  width: auto !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type {
+  word-break: break-word;
+}
+
+/* Execute / Clear buttons — never covered */
+.swagger-ui .execute-wrapper,
+.swagger-ui .btn-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 5 !important;
+  margin: 16px 0 24px !important;
+  padding: 12px 0 4px !important;
+  clear: both !important;
+  overflow: visible !important;
+  border-top: 1px solid var(--nesto-line);
+}
+.swagger-ui .btn.execute {
+  background: var(--nesto-ink) !important;
+  border-color: var(--nesto-ink) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 8px 18px !important;
+  box-shadow: none !important;
+}
+.swagger-ui .btn.execute:hover {
+  background: #0f1f36 !important;
+}
+.swagger-ui .btn.btn-clear {
+  border-radius: 8px !important;
+  border: 1px solid var(--nesto-line) !important;
+  background: #fff !important;
+}
+.swagger-ui .try-out__btn {
+  border-radius: 8px !important;
+  border-color: var(--nesto-gold) !important;
+  color: var(--nesto-ink) !important;
+}
+
+/* Request body editor */
+.swagger-ui .body-param textarea,
+.swagger-ui .parameters-col_description input[type="text"],
+.swagger-ui .parameters-col_description textarea,
+.swagger-ui select {
+  border-radius: 8px !important;
+  border: 1px solid var(--nesto-line) !important;
+  max-width: 100% !important;
+}
+.swagger-ui .opblock-body select {
+  min-width: 160px;
+}
+
+/* Responses */
+.swagger-ui .responses-wrapper {
+  padding-bottom: 16px !important;
+  overflow: visible !important;
+}
+.swagger-ui .highlight-code,
+.swagger-ui .microlight {
+  max-height: 420px !important;
+  border-radius: 8px !important;
+}
+
+/* Hide bulky Schemas section at bottom — reduces clutter */
+.swagger-ui section.models {
+  display: none !important;
+}
+
+/* Scheme / servers */
+.swagger-ui .scheme-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 12px !important;
+  margin: 0 !important;
+}

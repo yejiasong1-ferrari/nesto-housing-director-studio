@@ -1,0 +1,67 @@
+# AI Director Agent — Workflow V1 (frozen baseline)
+# Code tag: v1.0
+# This is workflow config, not an Agent decision surface.
+
+workflow_version: "1.0"
+code_tag: "v1.0"
+description: >
+  End-to-end closed loop: walkthrough video → final_video.mp4
+  with fixed default BGM under narration. Single evaluation feedback pass.
+
+pipeline:
+  - vision
+  - planner
+  - script
+  - timeline          # first pass (estimated durations)
+  - voice
+  - tts               # Voice Execution Service (deterministic)
+  - timeline_refine   # measured audio durations + narrative polish
+  - editing
+  - rendering         # draft
+  - evaluation        # once
+  - feedback_router   # apply once
+  - rendering_final   # final_video_v2 / final
+
+agents:
+  vision:
+    enabled: true
+  planner:
+    enabled: true
+  script:
+    enabled: true
+  voice:
+    enabled: true
+  timeline:
+    enabled: true
+  editing:
+    enabled: true
+  rendering:
+    enabled: true
+  evaluation:
+    enabled: true
+
+audio:
+  background_music:
+    enabled: true
+    path: storage/audio/bgm/default_bgm.mp3
+    volume_db: -18
+    loop: true
+    fade_in: 2
+    fade_out: 3
+
+render:
+  width: 1920
+  height: 1080
+  fps: 30
+  codec: libx264
+  audio_codec: aac
+
+models:
+  llm_base_url_env: OPENAI_BASE_URL
+  llm_default: gpt-4o
+  tts_provider: volcengine
+
+notes:
+  - Editing Agent does not select music (V1 fixed BGM).
+  - Evaluation does not re-enter after one feedback round.
+  - Canonical narration after timeline polish overwrites script_output.json.

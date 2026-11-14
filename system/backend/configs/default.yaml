@@ -1,0 +1,51 @@
+# AI Director - Default Pipeline Configuration
+# Version: 1.0.0
+
+pipeline:
+  # Agent execution order
+  agents:
+    - vision
+    - planner
+    - script
+    - voice
+    - timeline
+    - editing
+    - rendering
+    - evaluation
+
+  # Feedback loop settings
+  feedback:
+    max_loops: 3
+    # Index of timeline agent (loop back target)
+    start_index: 4
+    # Quality threshold for passing evaluation
+    quality_threshold: 0.7
+
+  # Default video settings
+  video:
+    output_format: mp4
+    output_resolution: [1920, 1080]
+    output_fps: 30.0
+    codec: libx264
+    audio_codec: aac
+
+  # Subtitle settings
+  subtitles:
+    enabled: true
+    font_size: 24
+    font_color: white
+    background_color: black
+    position: bottom
+
+# Storage settings
+storage:
+  base_path: ./storage
+  projects_dir: projects
+  temp_dir: tmp
+
+# Server settings
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: false

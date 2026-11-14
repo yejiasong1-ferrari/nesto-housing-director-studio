@@ -1,0 +1,113 @@
+# AI Director - Agent-Specific Configuration
+# Version: 1.0.0
+
+vision:
+  # Frame extraction sample rate (fps)
+  frame_sample_rate: 1.0
+  # Room segmentation settings (OpenCLIP-based spatial boundaries)
+  segmenter:
+    distance_threshold: 0.15
+    min_segment_duration: 3.0
+    max_segment_duration: 15.0
+    # One-shot walkthrough: tile [0, duration] with no dropped head/tail/gaps
+    continuous_coverage: true
+  # Key frame selection settings
+  keyframe_selector:
+    max_per_segment: 3
+    min_sharpness: 20.0
+
+planner:
+  # Default target video duration in seconds
+  default_target_duration: 120.0
+  # Maximum video duration
+  max_duration: 300.0
+  # Minimum importance score to include a segment
+  min_importance: 0.3
+  # Attention fusion weights (must sum to ~1.0)
+  attention_weights:
+    intent: 0.35
+    vision: 0.25
+    narrative_importance: 0.25
+    object_saliency: 0.15
+  # Intent gating: segments below threshold get penalized
+  intent_gate_threshold: 0.40
+  intent_penalty_multiplier: 0.30
+  # Hierarchical role assignment
+  hierarchy:
+    min_hero_segments: 2
+    hero_top_fraction: 0.15
+    transition_bottom_fraction: 0.30
+  hero_attention_threshold: 0.85
+
+script:
+  # Speaking rate in words per minute (English TTS budget; measured 138 wpm)
+  words_per_minute: 138
+  # Default narration tone
+  default_tone: professional
+  # Maximum narration text length per segment
+  max_segment_words: 100
+  # Acceptable +/- fraction of word budget before Alignment Engine adjusts text
+  alignment_tolerance: 0.25
+
+voice:
+  # TTS provider (execution layer — Voice Execution Service)
+  provider: volcengine
+  # Default voice speaker ID (Volcengine bigmodel)
+  default_speaker: zh_male_wennuanahu_moon_bigtts
+  # Base speaking rate for duration prediction (English words/sec at speed=1.0)
+  # Measured Volcengine M392 ≈ 2.3–2.5; budget the conservative 2.3.
+  base_words_per_second: 2.3
+  # Flag segments when |voice_duration - scene_duration| exceeds this (seconds)
+  duration_mismatch_threshold: 0.5
+  # Audio output format (execution layer)
+  output_format: mp3
+  sample_rate: 24000
+
+timeline:
+  # Single-take walkthrough: keep full source spans, no inter-segment gaps,
+  # cut-only transitions (no crossfade overlap that drops frames).
+  continuous_walkthrough: true
+  # Maximum allowed duration mismatch before applying strategy
+  max_duration_mismatch: 2.0
+  # Preferred adjustment strategies in order
+  preferred_strategies:
+    - slow_motion
+    - freeze_frame
+    - zoom_extend
+    - insert_still
+    - subtitle_card
+    - rewrite_narration
+
+editing:
+  # Match Timeline continuous mode — do not upgrade cuts to soft_pan/dissolve
+  continuous_walkthrough: true
+  # Default transition type (overridden to cut when continuous_walkthrough)
+  default_transition: cut
+  # Default transition duration in seconds
+  transition_duration: 0.0
+  # Maximum number of different strategies per video
+  max_strategy_variety: 4
+
+rendering:
+  # Never hard-trim extracted walkthrough spans; only extend (freeze) for audio
+  preserve_full_span: true
+  # Video codec
+  codec: libx264
+  # Audio codec
+  audio_codec: aac
+  # CRF quality (lower = better, 18-28 range)
+  crf: 23
+  # Preset (ultrafast, fast, medium, slow, veryslow)
+  preset: medium
+
+evaluation:
+  # Quality threshold for passing (0.0 to 1.0)
+  quality_threshold: 0.7
+  # Metric weights
+  weights:
+    narration_sync: 0.25
+    subtitle_quality: 0.15
+    visual_continuity: 0.20
+    highlight_coverage: 0.15
+    pacing: 0.15
+    editing_smoothness: 0.10

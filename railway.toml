@@ -1,0 +1,14 @@
+# Railway Settings (required):
+#   Root Directory: (empty / blank)  ← must NOT be system/backend
+#   Builder: Dockerfile
+#   Dockerfile path: Dockerfile
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+# App must bind before this elapses. Startup no longer waits on Postgres.
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"

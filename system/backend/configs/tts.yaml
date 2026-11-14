@@ -1,0 +1,52 @@
+# AI Director - TTS Provider Configuration (火山引擎)
+# Version: 1.0.0
+
+# Provider selection
+provider: volcengine
+
+# 火山引擎 TTS settings (Voice Execution Service — NOT Voice Agent)
+volcengine:
+  # API credentials (set via environment variables in production)
+  api_key: ${VOLCENGINE_API_KEY}
+  access_key: ${VOLCENGINE_ACCESS_KEY}
+  secret_key: ${VOLCENGINE_SECRET_KEY}
+  app_id: ${VOLCENGINE_TTS_APP_ID}
+
+  # V3 bidirectional WebSocket endpoint
+  endpoint: wss://openspeech.bytedance.com/api/v3/tts/bidirection
+  resource_id: seed-tts-1.0
+
+  # Default voice settings
+  default_speaker: zh_male_wennuanahu_moon_bigtts
+
+  # Audio format settings
+  output_format: mp3
+  sample_rate: 24000
+
+  # Performance settings
+  speed: 1.0
+  volume: 1.0
+  pitch: 1.0
+
+  # Available speakers (reference only) — seed-tts-1.0
+  speakers:
+    - id: zh_female_shuangkuaisisi_moon_bigtts
+      name: 中文女声-爽快思思
+      language: zh
+    - id: zh_male_M392_conversation_wvae_bigtts
+      name: 中文男声-对话M392
+      language: zh
+    - id: zh_male_wennuanahu_moon_bigtts
+      name: 中文男声-温暖阿虎
+      language: zh
+
+# Alternative TTS providers (for future use)
+elevenlabs:
+  api_key: ${ELEVENLABS_API_KEY}
+  default_voice: Rachel
+  model: eleven_multilingual_v2
+
+openai:
+  api_key: ${OPENAI_API_KEY}
+  default_voice: alloy
+  model: tts-1

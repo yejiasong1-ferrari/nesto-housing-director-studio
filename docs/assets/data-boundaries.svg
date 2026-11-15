@@ -1,23 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 620" role="img" aria-labelledby="title desc"><title id="title">Data and credential boundaries</title><desc id="desc">Public code can be inspected. Private media and provider credentials remain in their own execution boundary.</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#d6b16c"/></marker><style>text{font-family:Arial,Helvetica,sans-serif}.line{fill:none;stroke:#d6b16c;stroke-width:1.5;marker-end:url(#arrow)}</style></defs><rect width="1160" height="620" rx="12" fill="#0d1825"/>
-<text x="36" y="39" font-size="23" fill="#edf2f7">Data and credential boundaries</text>
-<text x="36" y="67" font-size="13" fill="#9aafc2">Public code can be inspected. Private media and provider credentials remain in their own execution boundary.</text>
-<rect x="36" y="110" width="306" height="390" rx="12" fill="none" stroke="#314457" stroke-dasharray="5 5"/>
-<text x="56" y="141" font-size="12" fill="#d6b16c">PUBLIC REPOSITORY</text>
-<rect x="427" y="110" width="306" height="390" rx="12" fill="none" stroke="#314457" stroke-dasharray="5 5"/>
-<text x="447" y="141" font-size="12" fill="#7ac6aa">YOUR BROWSER / DEVICE</text>
-<rect x="818" y="110" width="306" height="390" rx="12" fill="none" stroke="#314457" stroke-dasharray="5 5"/>
-<text x="838" y="141" font-size="12" fill="#d6b16c">PRIVATE SERVER</text>
-<rect x="56" y="164" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="56" y="177" width="3" height="25" rx="1.5" fill="#d6b16c"/><text x="76" y="194" font-size="17" fill="#edf2f7">Curated source</text><text x="76" y="221" font-size="13" fill="#9aafc2">Application and agent code</text><text x="76" y="244" font-size="13" fill="#9aafc2">Generic configuration templates</text><text x="76" y="278" font-size="11" fill="#d6b16c">NO RUNTIME WORKSPACES</text>
-<rect x="56" y="326" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="56" y="339" width="3" height="25" rx="1.5" fill="#d6b16c"/><text x="76" y="356" font-size="17" fill="#edf2f7">Publication checks</text><text x="76" y="383" font-size="13" fill="#9aafc2">Working tree + Git history scan</text><text x="76" y="406" font-size="13" fill="#9aafc2">Secret-value comparison locally</text><text x="76" y="440" font-size="11" fill="#d6b16c">NO SECRETS IN SCAN OUTPUT</text>
-<rect x="447" y="164" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="447" y="177" width="3" height="25" rx="1.5" fill="#7ac6aa"/><text x="467" y="194" font-size="17" fill="#edf2f7">Recorded presentation</text><text x="467" y="221" font-size="13" fill="#9aafc2">Previously rendered video</text><text x="467" y="244" font-size="13" fill="#9aafc2">Project and architecture diagrams</text><text x="467" y="278" font-size="11" fill="#7ac6aa">VIEWING ONLY · NO FILE INPUT</text>
-<rect x="447" y="326" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="447" y="339" width="3" height="25" rx="1.5" fill="#7ac6aa"/><text x="467" y="356" font-size="17" fill="#edf2f7">Video playback</text><text x="467" y="383" font-size="13" fill="#9aafc2">Play, seek and download recording</text><text x="467" y="406" font-size="13" fill="#9aafc2">No generation or editing controls</text><text x="467" y="440" font-size="11" fill="#7ac6aa">NO PROJECT OR CREDENTIAL STORAGE</text>
-<rect x="838" y="164" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="838" y="177" width="3" height="25" rx="1.5" fill="#d6b16c"/><text x="858" y="194" font-size="17" fill="#edf2f7">Environment + access</text><text x="858" y="221" font-size="13" fill="#9aafc2">Provider API keys on the server</text><text x="858" y="244" font-size="13" fill="#9aafc2">Authenticated private Studio</text><text x="858" y="278" font-size="11" fill="#d6b16c">NEVER BUNDLED INTO FRONTEND</text>
-<rect x="838" y="326" width="266" height="130" rx="9" fill="#152333" stroke="#314457"/><rect x="838" y="339" width="3" height="25" rx="1.5" fill="#d6b16c"/><text x="858" y="356" font-size="17" fill="#edf2f7">Processing and storage</text><text x="858" y="383" font-size="13" fill="#9aafc2">Model / TTS calls from the worker</text><text x="858" y="406" font-size="13" fill="#9aafc2">Private runtime media and artifacts</text><text x="858" y="440" font-size="11" fill="#d6b16c">CONFIGURED BY THE OPERATOR</text>
-<path class="line" d="M342 220 L427 220"/>
-<path class="line" d="M580 294 L580 326"/>
-<path class="line" d="M971 294 L971 326"/>
-<text x="36" y="554" font-size="11" fill="#7ac6aa">PUBLIC VIEWING</text>
-<text x="191" y="554" font-size="13" fill="#9aafc2">The public page does not accept uploads or call the private processing service.</text>
-<text x="36" y="583" font-size="11" fill="#d6b16c">BEFORE PUBLISHING</text>
-<text x="191" y="583" font-size="13" fill="#9aafc2">Scan source and history. Review your media, metadata and permissions before sharing your own output.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 690" role="img" aria-labelledby="title desc">
+<title id="title">Publication and private processing boundaries</title><desc id="desc">Public source and the recorded video are visible to visitors. Provider credentials, private footage and runtime workspaces remain inside a separate private processing boundary. Only a selected recording is published.</desc>
+<defs><marker id="publish" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#c68568"/></marker><style>text{font-family:Arial,Helvetica,sans-serif}</style></defs>
+<rect width="1160" height="690" rx="14" fill="#faf7f1"/>
+<text x="40" y="45" font-size="27" fill="#273b3a">A clear publication boundary</text>
+<text x="40" y="75" font-size="14" fill="#526271">The public recording is separate from private media, runtime data and provider credentials.</text>
+<circle cx="267" cy="342" r="213" fill="#e8f1ec" stroke="#7a9b8a" stroke-width="1.5"/>
+<circle cx="889" cy="342" r="227" fill="#f4e9e1" stroke="#bd947e" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="143" y="182" font-size="12" fill="#507e67">PUBLIC / VIEWING</text>
+<text x="777" y="170" font-size="12" fill="#9b654d">PRIVATE / PROCESSING</text>
+<rect x="147" y="218" width="240" height="143" rx="9" fill="#fff" stroke="#7a9b8a" stroke-width="2"/><rect x="159" y="230" width="216" height="119" rx="3" fill="#d4e5dc"/><path d="M252 263L252 316L298 289Z" fill="#507e67"/><path d="M267 362V384M222 385H312" fill="none" stroke="#7a9b8a" stroke-width="2"/>
+<text x="175" y="422" font-size="19" fill="#273b3a">Recorded video</text>
+<text x="141" y="453" font-size="13" fill="#526271">Playback, chapters and download</text>
+<text x="148" y="478" font-size="13" fill="#526271">Source code and architecture</text>
+<text x="169" y="518" font-size="11" fill="#507e67">NO UPLOAD CONTROLS</text>
+<circle cx="889" cy="303" r="90" fill="#fff8f2" stroke="#bd947e" stroke-width="1.5"/>
+<path d="M865 286V269A24 24 0 0 1 913 269V286" fill="none" stroke="#a36f56" stroke-width="3"/><rect x="854" y="284" width="70" height="53" rx="7" fill="#c68568"/><circle cx="889" cy="306" r="5" fill="#fff"/><path d="M889 310V320" stroke="#fff" stroke-width="3"/>
+<text x="811" y="366" font-size="15" fill="#9b654d">Server environment</text>
+<text x="755" y="420" font-size="16" fill="#493d36">API keys and access controls</text>
+<text x="755" y="450" font-size="14" fill="#526271">Private footage and project files</text>
+<text x="755" y="478" font-size="14" fill="#526271">Model / TTS calls and runtime logs</text>
+<text x="792" y="519" font-size="11" fill="#9b654d">NEVER IN PUBLIC GIT</text>
+<path d="M670 590H485" fill="none" stroke="#c68568" stroke-width="2" marker-end="url(#publish)"/>
+<path d="M582 160V545" fill="none" stroke="#bd947e" stroke-dasharray="3 7"/>
+<rect x="515" y="306" width="134" height="58" rx="29" fill="#faf7f1" stroke="#c68568"/>
+<text x="536" y="330" font-size="12" fill="#9b654d">REVIEW</text>
+<text x="535" y="348" font-size="9" fill="#9b654d">BEFORE SHARING</text>
+<text x="422" y="623" font-size="13" fill="#9b654d">Only the curated recording is published</text>
+<text x="40" y="665" font-size="12" fill="#526271">Scan source and reachable Git history before publishing. Keep provider credentials on the private server.</text>
 </svg>

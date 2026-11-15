@@ -2,7 +2,7 @@
 
 ## Public project page
 
-The public page plays a prerecorded video and displays project information and architecture diagrams. It has no video-upload control, editor, generation endpoint or provider-key input. It does not store visitor media, project data or credentials in browser storage, and makes no model-provider requests.
+The public page plays a prerecorded video and displays its recording information. It has no video-upload control, editor, generation endpoint or provider-key input. It does not store visitor media, project data or credentials in browser storage, and makes no model-provider requests.
 
 Footage input and processing belong to a separately configured private Studio, backend and worker. The public page does not connect to that deployment.
 

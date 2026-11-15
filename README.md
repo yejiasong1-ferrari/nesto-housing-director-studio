@@ -14,7 +14,7 @@ The system is designed for property agents and small production teams that need 
 
 **[Watch the video](https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/)** · [Download the MP4](docs/assets/nesto-system-overview.mp4)
 
-The public page presents a recorded walkthrough, the eight-agent workflow and system architecture diagrams. Visitors can play or download the video and explore the source code. Video upload and processing are available only in a separately configured private deployment.
+The playback page contains the recorded video, chapter navigation and recording information. Visitors can also play the preview directly in this README; architecture diagrams remain below. Video upload and processing are available only in a separately configured private deployment.
 
 The recording introduces the workflow and includes an actual saved 55-second render. Speech is reconstructed from saved TTS files and recorded timing; background music is omitted. Playback does not rerun the AI pipeline. See [media provenance](docs/MEDIA_NOTES.md).
 
@@ -22,7 +22,7 @@ The recording introduces the workflow and includes an actual saved 55-second ren
 
 ![Nesto system overview](docs/assets/system-overview.svg)
 
-The **public project page** is a viewing interface for the recorded output and architecture diagrams. The **private Next.js Studio** handles authenticated generation jobs, footage input and human review when deployed with the backend and worker.
+The **public playback page** presents the recorded output and its video information. The **private Next.js Studio** handles authenticated generation jobs, footage input and human review when deployed with the backend and worker.
 
 The **FastAPI backend** owns the API contracts and shared project artifacts. A separate **worker** executes the generation workflow. **MoviePy/FFmpeg** apply deterministic media operations; model calls handle visual interpretation and language-heavy decisions.
 
@@ -57,7 +57,7 @@ To preview the public video page, no package installation or API key is needed:
 python -m http.server 8080 --directory docs
 ```
 
-Open `http://localhost:8080`. This page only displays recorded media and diagrams. To run private AI generation, use Python 3.10+, Node.js 18.17+, FFmpeg and your own compatible model/TTS providers:
+Open `http://localhost:8080`. This page only displays the recording and its video information. To run private AI generation, use Python 3.10+, Node.js 18.17+, FFmpeg and your own compatible model/TTS providers:
 
 ```bash
 python -m venv .venv

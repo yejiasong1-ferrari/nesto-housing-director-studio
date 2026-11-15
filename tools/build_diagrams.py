@@ -28,41 +28,90 @@ def save(name,parts):OUT.joinpath(name).write_text('\n'.join(parts+['</svg>'])+'
 s=start('System overview','Three planes connect human intent, private computation and inspectable artifacts.',610)
 s += [text(36,108,'01 / INTERACTION',11,GOLD),text(427,108,'02 / PRIVATE PROCESSING',11,GOLD),text(850,108,'03 / ARTIFACTS',11,GOLD),
       box(36,128,330,168,'Private Next.js Studio',['Footage, brief and property metadata','Authenticated job creation','Human review and script revisions'],'SEPARATE PRIVATE DEPLOYMENT'),
-      box(36,352,330,160,'Public project page',['Recorded system walkthrough','Eight-agent workflow and diagrams','Source code and media provenance'],'VIDEO PLAYBACK ONLY · NO UPLOAD',GREEN),
+      box(36,352,330,160,'Public project page',['Recorded system walkthrough','Video chapters and download','GitHub source and media provenance'],'VIDEO PLAYBACK ONLY · NO UPLOAD',GREEN),
       box(427,128,350,168,'FastAPI + worker',['API contracts and job orchestration','Vision, planning, script and voice','Timeline, editing, render and review'],'EIGHT AGENTS · SHARED PROJECT STATE'),
       box(427,352,350,160,'Execution services',['Model inference and speech synthesis','MoviePy / FFmpeg media processing','Measured audio and render timing'],'SERVER ENVIRONMENT CREDENTIALS',GREEN),
       box(850,128,274,168,'Structured project state',['Scene evidence and director plan','Narration and voice specifications','Timeline and evaluation reports'],'INSPECTABLE DECISIONS'),
       box(850,352,274,160,'Production artifacts',['Narrated video and subtitles','Render timing and output metadata','Local or configured object storage'],'RUNTIME DATA EXCLUDED FROM GIT',GREEN),
       arrow(366,210,427,210),arrow(777,210,850,210),arrow(777,432,850,432),arrow(602,296,602,352),
       path('M985 512 L985 539 L201 539 L201 512'),text(394,531,'Selected recording published for viewing',12),
-      text(36,581,'PUBLIC PRESENTATION',11,GOLD),text(215,581,'Recorded playback and architecture only. Upload and processing remain in the private Studio.',13)]
+      text(36,581,'PUBLIC PRESENTATION',11,GOLD),text(215,581,'Recorded playback only. Architecture is documented in GitHub; processing remains in the private Studio.',13)]
 save('system-overview.svg',s)
 
-s=start('Agent collaboration','Eight specialized responsibilities share one project state; execution stays separate from reasoning.',640)
-xs=[36,324,612,900];w=224;h=140
-data=[('01 / Vision',['Rooms and visual evidence','Reusable scene inventory'],'PERCEIVE'),('02 / Planner',['Brief, highlights and scene roles','Narrative attention budget'],'PLAN'),('03 / Script',['Scene-grounded narration','Style and coverage constraints'],'WRITE'),('04 / Voice',['Delivery and pronunciation','TTS execution + measurement'],'SPEAK')]
-for x,(title,lines,tag) in zip(xs,data):s.append(box(x,125,w,h,title,lines,tag))
-for i in range(3):s.append(arrow(xs[i]+w,195,xs[i+1],195))
-bottom=[('08 / Evaluation',['Alignment and technical checks','Bounded correction routing'],'REVIEW'),('07 / Rendering',['Deterministic media operations','MoviePy / FFmpeg video output'],'EXECUTE'),('06 / Editing',['Pacing and visual treatment','Subtitle and audio strategy'],'DIRECT'),('05 / Timeline',['Pre-TTS budget validation','Post-TTS window alignment'],'ALIGN')]
-for x,(title,lines,tag) in zip(xs,bottom):s.append(box(x,350,w,h,title,lines,tag,GREEN))
-for i in range(3,0,-1):s.append(arrow(xs[i],420,xs[i-1]+w,420))
-s += [arrow(1012,265,1012,350),
-      '<rect x="324" y="286" width="512" height="43" rx="7" fill="#d6b16c12" stroke="#7a6745"/>',text(345,313,'SHARED PROJECT STATE  /  versioned, structured stage artifacts',13,GOLD),
-      path('M148 490 L148 530 L724 530 L724 490'),text(281,521,'Bounded correction pass when constraints fail',13),
-      text(36,586,'HYBRID CONTROL',11,GREEN),text(207,586,'LLMs support perception and language decisions. Validators, routing and rendering enforce explicit constraints.',12)]
-save('agent-workflow.svg',s)
 
-s=start('Data and credential boundaries','Public code can be inspected. Private media and provider credentials remain in their own execution boundary.',620)
-for x,label,color in [(36,'PUBLIC REPOSITORY',GOLD),(427,'YOUR BROWSER / DEVICE',GREEN),(818,'PRIVATE SERVER',GOLD)]:
- s += [f'<rect x="{x}" y="110" width="306" height="390" rx="12" fill="none" stroke="#314457" stroke-dasharray="5 5"/>',text(x+20,141,label,12,color)]
-s += [box(56,164,266,130,'Curated source',['Application and agent code','Generic configuration templates'],'NO RUNTIME WORKSPACES'),
-      box(56,326,266,130,'Publication checks',['Working tree + Git history scan','Secret-value comparison locally'],'NO SECRETS IN SCAN OUTPUT'),
-      box(447,164,266,130,'Recorded presentation',['Previously rendered video','Project and architecture diagrams'],'VIEWING ONLY · NO FILE INPUT',GREEN),
-      box(447,326,266,130,'Video playback',['Play, seek and download recording','No generation or editing controls'],'NO PROJECT OR CREDENTIAL STORAGE',GREEN),
-      box(838,164,266,130,'Environment + access',['Provider API keys on the server','Authenticated private Studio'],'NEVER BUNDLED INTO FRONTEND'),
-      box(838,326,266,130,'Processing and storage',['Model / TTS calls from the worker','Private runtime media and artifacts'],'CONFIGURED BY THE OPERATOR'),
-      arrow(342,220,427,220),arrow(580,294,580,326),arrow(971,294,971,326),
-      text(36,554,'PUBLIC VIEWING',11,GREEN),text(191,554,'The public page does not accept uploads or call the private processing service.',13),
-      text(36,583,'BEFORE PUBLISHING',11,GOLD),text(191,583,'Scan source and history. Review your media, metadata and permissions before sharing your own output.',13)]
-save('data-boundaries.svg',s)
-print('Built 3 system diagrams.')
+# Editorial swimlanes: a light palette and a serpentine process show the two
+# passes of the Timeline agent explicitly, instead of duplicating a box grid.
+def label(x, y, value, size=14, color='#526271'):
+    return text(x, y, value, size, color)
+
+s = [
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 820" role="img" aria-labelledby="title desc">',
+    '<title id="title">Eight agents, three production phases</title><desc id="desc">A swimlane workflow. Vision, Planner and Script build the story. Timeline validates the speech budget before Voice and reconciles measured audio afterward. Editing, Rendering and Evaluation produce and review the output.</desc>',
+    '<defs><marker id="flow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#64809a"/></marker><style>text{font-family:Arial,Helvetica,sans-serif}.flow{fill:none;stroke:#64809a;stroke-width:2;marker-end:url(#flow)}</style></defs>',
+    '<rect width="1160" height="820" rx="14" fill="#f6f4ef"/>',
+    label(40, 45, 'The production loop', 27, '#20354a'),
+    label(40, 75, 'Eight agents, three phases. Timing is checked before and after speech synthesis.', 14),
+]
+lanes = [
+    (118, '#e8eef4', '01 / UNDERSTAND & COMPOSE'),
+    (323, '#f0e7d7', '02 / CONSTRAIN & ALIGN'),
+    (528, '#e6eee7', '03 / EXECUTE & REVIEW'),
+]
+for y, color, name in lanes:
+    s += [f'<rect x="40" y="{y}" width="1080" height="181" rx="12" fill="{color}"/>', label(61, y+24, name, 11, '#526271')]
+
+def step(x, y, title, lines, badge, color):
+    return ''.join([
+        f'<rect x="{x}" y="{y}" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/>',
+        f'<circle cx="{x+23}" cy="{y+25}" r="5" fill="{color}"/>',
+        label(x+38, y+31, title, 18, '#20354a'),
+        *[label(x+18, y+59+i*20, line, 12) for i, line in enumerate(lines)],
+        label(x+18, y+111, badge, 10, color),
+    ])
+
+for x, title, lines, badge in [
+    (90, 'Vision', ['Room segments and visible features', 'Reusable scene evidence'], '01 / PERCEPTION'),
+    (440, 'Planner', ['Highlights, audience and narrative arc', 'Attention allocation across rooms'], '02 / STORY PLANNING'),
+    (790, 'Script', ['Scene-grounded narration', 'Style, coverage and speech estimates'], '03 / WRITING'),
+]: s.append(step(x, 158, title, lines, badge, '#426b91'))
+for x, title, lines, badge in [
+    (90, 'Timeline · reconcile', ['Measured TTS duration and offsets', 'Final scene windows'], '05 / POST-TTS ALIGNMENT'),
+    (440, 'Voice + TTS', ['Delivery, rhythm and pronunciation', 'Synthesize speech and measure audio'], '04 / SPEECH DIRECTION'),
+    (790, 'Timeline · budget', ['Available scene duration', 'Validate the narration budget'], '05 / PRE-TTS GUARD'),
+]: s.append(step(x, 363, title, lines, badge, '#9b7338'))
+for x, title, lines, badge in [
+    (90, 'Editing', ['Pacing, visual treatment and subtitles', 'Structured editing decisions'], '06 / EDIT DIRECTION'),
+    (440, 'Rendering', ['MoviePy / FFmpeg media operations', 'Video and timing manifest'], '07 / DETERMINISTIC EXECUTION'),
+    (790, 'Evaluation', ['Alignment and technical checks', 'Categorized correction feedback'], '08 / REVIEW'),
+]: s.append(step(x, 568, title, lines, badge, '#4e7b60'))
+for d in ['M370 222H440', 'M720 222H790', 'M930 286V363', 'M790 427H720', 'M440 427H370', 'M230 491V568', 'M370 632H440', 'M720 632H790']:
+    s.append(f'<path class="flow" d="{d}"/>')
+s += ['<path class="flow" d="M930 696V740H230V696" stroke-dasharray="5 5"/>', '<rect x="352" y="722" width="454" height="32" fill="#f6f4ef"/>', label(374,743,'Bounded correction pass when constraints fail',13,'#9b654d'), label(40,790,'Shared Project State links evidence, decisions, measured speech and the final artifact.',13)]
+save('agent-workflow.svg', s)
+
+# A trust-boundary map uses circles, a screen and a credential lock rather than
+# another rectangular flowchart. Only curated recorded media crosses the gate.
+s = [
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 690" role="img" aria-labelledby="title desc">',
+    '<title id="title">Publication and private processing boundaries</title><desc id="desc">Public source and the recorded video are visible to visitors. Provider credentials, private footage and runtime workspaces remain inside a separate private processing boundary. Only a selected recording is published.</desc>',
+    '<defs><marker id="publish" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#c68568"/></marker><style>text{font-family:Arial,Helvetica,sans-serif}</style></defs>',
+    '<rect width="1160" height="690" rx="14" fill="#faf7f1"/>',
+    label(40,45,'A clear publication boundary',27,'#273b3a'), label(40,75,'The public recording is separate from private media, runtime data and provider credentials.',14),
+    '<circle cx="267" cy="342" r="213" fill="#e8f1ec" stroke="#7a9b8a" stroke-width="1.5"/>',
+    '<circle cx="889" cy="342" r="227" fill="#f4e9e1" stroke="#bd947e" stroke-width="1.5" stroke-dasharray="6 6"/>',
+    label(143,182,'PUBLIC / VIEWING',12,'#507e67'), label(777,170,'PRIVATE / PROCESSING',12,'#9b654d'),
+    '<rect x="147" y="218" width="240" height="143" rx="9" fill="#fff" stroke="#7a9b8a" stroke-width="2"/><rect x="159" y="230" width="216" height="119" rx="3" fill="#d4e5dc"/><path d="M252 263L252 316L298 289Z" fill="#507e67"/><path d="M267 362V384M222 385H312" fill="none" stroke="#7a9b8a" stroke-width="2"/>',
+    label(175,422,'Recorded video',19,'#273b3a'), label(141,453,'Playback, chapters and download',13), label(148,478,'Source code and architecture',13),
+    label(169,518,'NO UPLOAD CONTROLS',11,'#507e67'),
+    '<circle cx="889" cy="303" r="90" fill="#fff8f2" stroke="#bd947e" stroke-width="1.5"/>',
+    '<path d="M865 286V269A24 24 0 0 1 913 269V286" fill="none" stroke="#a36f56" stroke-width="3"/><rect x="854" y="284" width="70" height="53" rx="7" fill="#c68568"/><circle cx="889" cy="306" r="5" fill="#fff"/><path d="M889 310V320" stroke="#fff" stroke-width="3"/>',
+    label(811,366,'Server environment',15,'#9b654d'),
+    label(755,420,'API keys and access controls',16,'#493d36'), label(755,450,'Private footage and project files',14), label(755,478,'Model / TTS calls and runtime logs',14), label(792,519,'NEVER IN PUBLIC GIT',11,'#9b654d'),
+    '<path d="M670 590H485" fill="none" stroke="#c68568" stroke-width="2" marker-end="url(#publish)"/>',
+    '<path d="M582 160V545" fill="none" stroke="#bd947e" stroke-dasharray="3 7"/>',
+    '<rect x="515" y="306" width="134" height="58" rx="29" fill="#faf7f1" stroke="#c68568"/>', label(536,330,'REVIEW',12,'#9b654d'), label(535,348,'BEFORE SHARING',9,'#9b654d'),
+    label(422,623,'Only the curated recording is published',13,'#9b654d'),
+    label(40,665,'Scan source and reachable Git history before publishing. Keep provider credentials on the private server.',12),
+]
+save('data-boundaries.svg', s)
+print('Built three diagrams: blueprint architecture, editorial swimlanes and a trust-boundary map.')

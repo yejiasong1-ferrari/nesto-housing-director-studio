@@ -28,7 +28,7 @@ The **FastAPI backend** owns the API contracts and shared project artifacts. A s
 
 ## Eight-agent collaboration
 
-![Eight-agent collaboration and bounded feedback](docs/assets/agent-workflow.svg)
+![Eight agents grouped into understanding, alignment and production](docs/assets/agent-workflow.svg)
 
 1. **Vision** turns footage into a room/scene inventory and visual knowledge base.
 2. **Planner** interprets the brief, prioritizes property highlights and arranges the narrative.

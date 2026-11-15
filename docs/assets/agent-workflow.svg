@@ -1,34 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 820" role="img" aria-labelledby="title desc">
-<title id="title">Eight agents, three production phases</title><desc id="desc">A swimlane workflow. Vision, Planner and Script build the story. Timeline validates the speech budget before Voice and reconciles measured audio afterward. Editing, Rendering and Evaluation produce and review the output.</desc>
-<defs><marker id="flow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#64809a"/></marker><style>text{font-family:Arial,Helvetica,sans-serif}.flow{fill:none;stroke:#64809a;stroke-width:2;marker-end:url(#flow)}</style></defs>
-<rect width="1160" height="820" rx="14" fill="#f6f4ef"/>
-<text x="40" y="45" font-size="27" fill="#20354a">The production loop</text>
-<text x="40" y="75" font-size="14" fill="#526271">Eight agents, three phases. Timing is checked before and after speech synthesis.</text>
-<rect x="40" y="118" width="1080" height="181" rx="12" fill="#e8eef4"/>
-<text x="61" y="142" font-size="11" fill="#526271">01 / UNDERSTAND &amp; COMPOSE</text>
-<rect x="40" y="323" width="1080" height="181" rx="12" fill="#f0e7d7"/>
-<text x="61" y="347" font-size="11" fill="#526271">02 / CONSTRAIN &amp; ALIGN</text>
-<rect x="40" y="528" width="1080" height="181" rx="12" fill="#e6eee7"/>
-<text x="61" y="552" font-size="11" fill="#526271">03 / EXECUTE &amp; REVIEW</text>
-<rect x="90" y="158" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="113" cy="183" r="5" fill="#426b91"/><text x="128" y="189" font-size="18" fill="#20354a">Vision</text><text x="108" y="217" font-size="12" fill="#526271">Room segments and visible features</text><text x="108" y="237" font-size="12" fill="#526271">Reusable scene evidence</text><text x="108" y="269" font-size="10" fill="#426b91">01 / PERCEPTION</text>
-<rect x="440" y="158" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="463" cy="183" r="5" fill="#426b91"/><text x="478" y="189" font-size="18" fill="#20354a">Planner</text><text x="458" y="217" font-size="12" fill="#526271">Highlights, audience and narrative arc</text><text x="458" y="237" font-size="12" fill="#526271">Attention allocation across rooms</text><text x="458" y="269" font-size="10" fill="#426b91">02 / STORY PLANNING</text>
-<rect x="790" y="158" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="813" cy="183" r="5" fill="#426b91"/><text x="828" y="189" font-size="18" fill="#20354a">Script</text><text x="808" y="217" font-size="12" fill="#526271">Scene-grounded narration</text><text x="808" y="237" font-size="12" fill="#526271">Style, coverage and speech estimates</text><text x="808" y="269" font-size="10" fill="#426b91">03 / WRITING</text>
-<rect x="90" y="363" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="113" cy="388" r="5" fill="#9b7338"/><text x="128" y="394" font-size="18" fill="#20354a">Timeline · reconcile</text><text x="108" y="422" font-size="12" fill="#526271">Measured TTS duration and offsets</text><text x="108" y="442" font-size="12" fill="#526271">Final scene windows</text><text x="108" y="474" font-size="10" fill="#9b7338">05 / POST-TTS ALIGNMENT</text>
-<rect x="440" y="363" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="463" cy="388" r="5" fill="#9b7338"/><text x="478" y="394" font-size="18" fill="#20354a">Voice + TTS</text><text x="458" y="422" font-size="12" fill="#526271">Delivery, rhythm and pronunciation</text><text x="458" y="442" font-size="12" fill="#526271">Synthesize speech and measure audio</text><text x="458" y="474" font-size="10" fill="#9b7338">04 / SPEECH DIRECTION</text>
-<rect x="790" y="363" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="813" cy="388" r="5" fill="#9b7338"/><text x="828" y="394" font-size="18" fill="#20354a">Timeline · budget</text><text x="808" y="422" font-size="12" fill="#526271">Available scene duration</text><text x="808" y="442" font-size="12" fill="#526271">Validate the narration budget</text><text x="808" y="474" font-size="10" fill="#9b7338">05 / PRE-TTS GUARD</text>
-<rect x="90" y="568" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="113" cy="593" r="5" fill="#4e7b60"/><text x="128" y="599" font-size="18" fill="#20354a">Editing</text><text x="108" y="627" font-size="12" fill="#526271">Pacing, visual treatment and subtitles</text><text x="108" y="647" font-size="12" fill="#526271">Structured editing decisions</text><text x="108" y="679" font-size="10" fill="#4e7b60">06 / EDIT DIRECTION</text>
-<rect x="440" y="568" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="463" cy="593" r="5" fill="#4e7b60"/><text x="478" y="599" font-size="18" fill="#20354a">Rendering</text><text x="458" y="627" font-size="12" fill="#526271">MoviePy / FFmpeg media operations</text><text x="458" y="647" font-size="12" fill="#526271">Video and timing manifest</text><text x="458" y="679" font-size="10" fill="#4e7b60">07 / DETERMINISTIC EXECUTION</text>
-<rect x="790" y="568" width="280" height="128" rx="8" fill="#fff" stroke="#d5dde3"/><circle cx="813" cy="593" r="5" fill="#4e7b60"/><text x="828" y="599" font-size="18" fill="#20354a">Evaluation</text><text x="808" y="627" font-size="12" fill="#526271">Alignment and technical checks</text><text x="808" y="647" font-size="12" fill="#526271">Categorized correction feedback</text><text x="808" y="679" font-size="10" fill="#4e7b60">08 / REVIEW</text>
-<path class="flow" d="M370 222H440"/>
-<path class="flow" d="M720 222H790"/>
-<path class="flow" d="M930 286V363"/>
-<path class="flow" d="M790 427H720"/>
-<path class="flow" d="M440 427H370"/>
-<path class="flow" d="M230 491V568"/>
-<path class="flow" d="M370 632H440"/>
-<path class="flow" d="M720 632H790"/>
-<path class="flow" d="M930 696V740H230V696" stroke-dasharray="5 5"/>
-<rect x="352" y="722" width="454" height="32" fill="#f6f4ef"/>
-<text x="374" y="743" font-size="13" fill="#9b654d">Bounded correction pass when constraints fail</text>
-<text x="40" y="790" font-size="13" fill="#526271">Shared Project State links evidence, decisions, measured speech and the final artifact.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="480" viewBox="0 0 1160 480" role="img" aria-labelledby="title desc">
+<title id="title">Agent workflow</title><desc id="desc">Understand groups Vision, Planner and Script. Align groups Voice and Timeline. Produce groups Editing, Rendering and Evaluation. Timeline validates narration budgets before TTS and reconciles measured speech afterward.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#d2af70"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif}</style>
+<rect width="1160" height="480" rx="12" fill="#0b1b2b"/>
+<path d="M56 32H88" fill="none" stroke="#d2af70" stroke-width="1.5"/>
+<text x="1104" y="38" font-size="13" fill="#d2af70" text-anchor="end" font-weight="400">NESTO / 02</text>
+<text x="56" y="78" font-size="32" fill="#f4f1ea" text-anchor="start" font-weight="500">Agent workflow</text>
+<text x="56" y="111" font-size="17" fill="#abb9c6" text-anchor="start" font-weight="400">Eight responsibilities, grouped into three clear stages.</text>
+<path d="M56 140H1104" fill="none" stroke="#2a3e52" stroke-width="1.5"/>
+<path d="M232 190H552" fill="none" stroke="#d2af70" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M608 190H928" fill="none" stroke="#d2af70" stroke-width="1.5" marker-end="url(#arrow)"/>
+<circle cx="204" cy="190" r="20" fill="#11263a" stroke="#d2af70"/>
+<text x="204" y="195" font-size="13" fill="#d2af70" text-anchor="middle" font-weight="400">01</text>
+<text x="204" y="246" font-size="26" fill="#f4f1ea" text-anchor="middle" font-weight="500">Understand</text>
+<text x="204" y="288" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Vision · Planner</text>
+<text x="204" y="320" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Script</text>
+<text x="204" y="365" font-size="17" fill="#abb9c6" text-anchor="middle" font-weight="400">Visual facts + story</text>
+<circle cx="580" cy="190" r="20" fill="#11263a" stroke="#d2af70"/>
+<text x="580" y="195" font-size="13" fill="#d2af70" text-anchor="middle" font-weight="400">02</text>
+<text x="580" y="246" font-size="26" fill="#f4f1ea" text-anchor="middle" font-weight="500">Align</text>
+<text x="580" y="288" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Voice</text>
+<text x="580" y="320" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Timeline</text>
+<text x="580" y="365" font-size="17" fill="#abb9c6" text-anchor="middle" font-weight="400">Speech + scene timing</text>
+<circle cx="956" cy="190" r="20" fill="#11263a" stroke="#d2af70"/>
+<text x="956" y="195" font-size="13" fill="#d2af70" text-anchor="middle" font-weight="400">03</text>
+<text x="956" y="246" font-size="26" fill="#f4f1ea" text-anchor="middle" font-weight="500">Produce</text>
+<text x="956" y="288" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Editing · Rendering</text>
+<text x="956" y="320" font-size="21" fill="#f4f1ea" text-anchor="middle" font-weight="400">Evaluation</text>
+<text x="956" y="365" font-size="17" fill="#abb9c6" text-anchor="middle" font-weight="400">Execution + review</text>
+<path d="M56 416H1104" fill="none" stroke="#2a3e52" stroke-width="1.5"/>
+<text x="56" y="449" font-size="16" fill="#abb9c6" text-anchor="start" font-weight="400">Timeline checks budgets before TTS, then aligns scenes with measured speech.</text>
 </svg>

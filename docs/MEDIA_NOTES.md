@@ -12,3 +12,5 @@ The output preview is exported at 1280×720. Narration is reconstructed from the
 The original sample walkthrough includes on-screen Morris Hong Kong / morris-hk.com identifiers. These are retained as part of the footage. Original footage and on-screen branding belong to their respective owners. The project demonstrates automated processing of sample material; it does not imply an affiliation, a property listing, or ownership of the original footage.
 
 The sample footage is separate from the project code. Supply footage and music that you are entitled to use when running your own production.
+
+The README includes the same 72-second walkthrough as a native GitHub video attachment. This H.264/AAC copy is compressed for inline playback; the playback page and downloadable MP4 retain the original public encoding. No private runtime files or provider configuration are included in the attachment.

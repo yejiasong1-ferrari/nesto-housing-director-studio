@@ -10,7 +10,7 @@ The system is designed for property agents and small production teams that need 
 
 ## Recorded system walkthrough
 
-[![Watch the Nesto system walkthrough](docs/assets/reference-poster.jpg)](https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/)
+https://github.com/user-attachments/assets/768df8ac-b89e-48d3-bd22-8b81d3498a7e
 
 **[Watch the video](https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/)** · [Download the MP4](docs/assets/nesto-system-overview.mp4)
 

@@ -18,7 +18,7 @@ cp .env.example .env
 PYTHONPATH=system uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-Set `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL`, and the TTS provider settings for the providers you use. Provider behavior and model compatibility can vary. The saved demo uses an existing local run rather than a fresh generation request.
+Set `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL`, and the TTS provider settings for the providers you use. Provider behavior and model compatibility can vary. The recorded reference uses an existing local run rather than a fresh generation request.
 
 Leaving `DATABASE_URL` empty enables the local in-memory store. For persistence, configure your own Supabase database and apply the migrations in `system/supabase/migrations/`.
 
@@ -51,4 +51,4 @@ The backend and worker need matching provider and storage configuration. Optiona
 
 Supply your own property footage. Runtime workspaces belong in `storage/`; they are ignored by Git. Background music is optional and must be supplied separately with appropriate usage rights.
 
-The public demo build script accepts the original local workspace as an input and uses only its saved render and TTS timing. Run `npm install --prefix tools` to install the SVG title-card renderer, then see `python tools/build_demo.py --help`. Pass `--font` with a local TrueType font path on non-macOS systems.
+The system walkthrough build script accepts the original local workspace as an input and uses only its saved render and TTS timing. Run `npm install --prefix tools` to install the SVG title-card renderer, then see `python tools/build_overview.py --help`. Pass `--font` with a local TrueType font path on non-macOS systems.

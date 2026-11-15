@@ -1,1 +1,94 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=demo.html"><title>Nesto Housing Director</title><link rel="canonical" href="https://yejiasong1-ferrari.github.io/nesto-housing-director-demo/demo.html"></head><body><a href="demo.html">Open the Nesto demo</a></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Nesto — Production Studio</title>
+    <meta
+      name="description"
+      content="Nesto Production Studio: a video project workspace with storyboard editing, a timeline, eight-agent architecture, local rendering, and private server-side AI processing."
+    />
+    <meta
+      property="og:title"
+      content="Nesto Housing Director — Production Studio"
+    />
+    <meta
+      property="og:description"
+      content="A complete workspace for property video production. Import footage, edit scenes, inspect the agent workflow, and export your project."
+    />
+    <meta
+      property="og:image"
+      content="https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/assets/nesto-logo.png"
+    />
+    <link rel="icon" href="assets/nesto-icon.png" />
+    <link rel="stylesheet" href="studio.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="./" aria-label="Nesto Studio"
+          ><img src="assets/nesto-icon.png" alt="Nesto" />
+          <div><b>nesto</b><small>PRODUCTION STUDIO</small></div></a
+        >
+        <div class="section-label">Workspace</div>
+        <button disabled class="nav-button active" data-view="studio">
+          ◫ <span>Production studio</span></button
+        ><button disabled class="nav-button" data-view="projects">
+          ▤ <span>Projects</span>
+        </button>
+        <div class="section-label">Intelligence</div>
+        <button disabled class="nav-button" data-view="workflow">
+          ⌘ <span>Agent workflow</span></button
+        ><button disabled class="nav-button" data-view="system">
+          ◇ <span>System architecture</span></button
+        ><button disabled class="nav-button" data-view="settings">
+          ⚙ <span>Connections & privacy</span>
+        </button>
+        <div class="sidebar-bottom">
+          <p><span class="dot"></span>Browser-local workspace</p>
+          <p>Video and edits stay on this device.</p>
+          <a
+            href="https://github.com/yejiasong1-ferrari/nesto-housing-director-studio"
+            target="_blank"
+            rel="noopener"
+            >Source repository ↗</a
+          >
+        </div>
+      </aside>
+      <header class="topbar">
+        <div class="breadcrumb">
+          Workspace <b id="current-view">Production studio</b>
+        </div>
+        <div class="top-actions">
+          <span class="tag" id="save-status" role="status"
+            >Loading workspace</span
+          ><button class="button" id="import-button" disabled>
+            Import video</button
+          ><button class="button primary" id="export-button" disabled>
+            Export project ↗
+          </button>
+        </div>
+      </header>
+      <main id="main" aria-live="polite">
+        <section class="panel" style="padding: 28px">
+          <span class="tag gold">OPENING WORKSPACE</span>
+          <h1 style="margin-top: 16px">Nesto Production Studio</h1>
+          <p class="muted">
+            Loading your project and the reference video. Imported footage
+            remains on your device.
+          </p>
+        </section>
+      </main>
+    </div>
+    <input class="hidden" type="file" id="video-file" accept="video/*" /><input
+      class="hidden"
+      type="file"
+      id="project-file"
+      accept=".json,application/json"
+    />
+    <div id="modal-root"></div>
+    <div id="toast" role="status"></div>
+    <script type="module" src="workbench.mjs"></script>
+  </body>
+</html>

@@ -1,80 +1,78 @@
-<p align="center"><img src="docs/assets/nesto-logo.png" width="230" alt="Nesto logo"></p>
-
+<p align="center"><img src="docs/assets/nesto-icon.png" width="72" alt="Nesto"></p>
 <h1 align="center">Nesto Housing Director</h1>
-<p align="center"><strong>Eight specialized agents. One real estate video production workflow.</strong></p>
-<p align="center">Walkthrough footage → visual understanding → narrative planning → narrated MP4</p>
-<p align="center">
-  <a href="https://yejiasong1-ferrari.github.io/nesto-housing-director-demo/demo.html">Watch the demo</a> ·
-  <a href="#how-the-agents-work">Explore the architecture</a> ·
-  <a href="docs/LOCAL_SETUP.md">Run locally</a>
-</p>
+<p align="center"><strong>An inspectable production system for real estate video.</strong></p>
+<p align="center">Visual evidence → narrative decisions → measured speech → a finished video</p>
+<p align="center"><a href="https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/">Open Production Studio</a> · <a href="docs/LOCAL_SETUP.md">Run the AI pipeline</a> · <a href="docs/SECURITY.md">Data boundaries</a></p>
 
-## What it does
+Nesto coordinates **eight specialized agents** around a shared Project State to turn property walkthrough footage and a director brief into a narrated video. It brings visual analysis, storytelling, speech timing, editing and quality review into one workflow, with structured artifacts that a human can inspect and revise.
 
-Nesto turns property walkthrough footage, a director brief, and property metadata into a narrated presentation video. It coordinates perception, creative planning, speech delivery, timeline alignment, editing strategy, rendering, and quality review through a shared **Project State**.
+The system is designed for property agents and small production teams that need a consistent walkthrough narrative without manually rebuilding every script, speech window and edit decision.
 
-Built for real estate agents and small production teams, the workflow automates repetitive production steps while keeping the narration, scene decisions, and timing available for inspection in a **Next.js Studio** interface.
+## Production Studio
 
-## Demo
+![Nesto Production Studio workspace](docs/assets/production-studio.png)
 
-[![Watch the Nesto project demo](docs/assets/demo-poster.jpg)](https://yejiasong1-ferrari.github.io/nesto-housing-director-demo/demo.html)
+The [public workspace](https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/) opens directly into an editable video project. It is a working browser application with:
 
-**[Play the project demo](https://yejiasong1-ferrari.github.io/nesto-housing-director-demo/demo.html)** · [Download the MP4](docs/assets/nesto-demo.mp4)
+- **Project management:** create from local footage, duplicate, archive/restore, and import/export portable project JSON.
+- **Storyboard editing:** rename scenes, revise narration, trim source ranges, reorder or split scenes, and undo edits.
+- **Timeline checks:** validate source boundaries and compare recorded speech duration with each scene window.
+- **Preview and export:** play the edited sequence, export aligned SRT subtitles, and render a real video locally with original audio and optional captions.
+- **Agent inspection:** explore each agent's responsibility, output contract and current project state.
 
-The video introduces the workflow and shows an actual saved 55-second render from the local v3.1 project. Its narration track is reconstructed from the saved TTS files and recorded timing; background music is omitted in this public preview. Playback is prerecorded. See [media provenance](docs/MEDIA_NOTES.md).
+Imported footage and edits stay in this browser's IndexedDB. Exported JSON contains the edit plan, so local footage must be relinked on another device. Video rendering uses Canvas/MediaRecorder; the available video format depends on the browser.
 
-## How the agents work
+The included **Harbor Residence** reference project contains a recorded 55-second output and measured voice timings. Editing its text does not regenerate the existing speech. Model inference and TTS require the separate private backend described below; the public workspace does not simulate AI execution.
 
-1. **Vision — build the factual scene inventory.** Segment rooms, select representative frames, identify visible features, and assemble a reusable Vision Knowledge Base.
-2. **Planner — decide the property story.** Interpret the brief, select highlights, allocate attention, and arrange the narrative flow.
-3. **Script — write grounded narration.** Generate scene-specific copy and validate coverage, style, and duration constraints.
-4. **Voice — direct speech delivery.** Plan voice style, rhythm, pronunciation, and duration. A separate execution service performs TTS synthesis.
-5. **Timeline — align speech with footage.** Check narration budgets before TTS, then reconcile scene timing with measured audio durations.
-6. **Editing — plan the treatment.** Specify pacing, visual effects, transitions, subtitle styling, and audio treatment as structured decisions.
-7. **Rendering — execute the plan.** Apply deterministic media operations with MoviePy/FFmpeg and export an MP4.
-8. **Evaluation — review the result.** Check audiovisual alignment, subtitles, timeline consistency, cinematic choices, and technical quality; route a bounded correction pass.
+## System architecture
 
-```mermaid
-flowchart LR
-  Input[Footage + brief] --> V[Vision]
-  V --> P[Planner]
-  P --> S[Script]
-  S --> T[Timeline validation]
-  T --> W[Voice + TTS service]
-  W --> F[Final timeline]
-  F --> E[Editing strategy]
-  E --> R[Deterministic rendering]
-  R --> Q[Evaluation]
-  Q --> Out[Narrated MP4]
+![Nesto system overview](docs/assets/system-overview.svg)
+
+There are two interfaces within the system:
+
+- **Public Production Studio:** browser-local editing, inspection, validation and export. No provider credentials are requested or shipped to the client.
+- **Private Next.js Studio:** authenticated generation jobs, server-side agent orchestration, model/TTS calls, persistent storage and worker execution when configured by the operator.
+
+The **FastAPI backend** owns the API contracts and shared project artifacts. A separate **worker** executes the generation workflow. **MoviePy/FFmpeg** apply deterministic media operations; model calls handle visual interpretation and language-heavy decisions.
+
+## Eight-agent collaboration
+
+![Eight-agent collaboration and bounded feedback](docs/assets/agent-workflow.svg)
+
+1. **Vision** turns footage into a room/scene inventory and visual knowledge base.
+2. **Planner** interprets the brief, prioritizes property highlights and arranges the narrative.
+3. **Script** writes scene-grounded narration and checks style, coverage and duration budgets.
+4. **Voice** plans delivery, rhythm and pronunciation; a separate TTS execution service synthesizes and measures speech.
+5. **Timeline** checks budgets before TTS and reconciles final windows with measured speech afterward.
+6. **Editing** specifies pacing, visual operations, subtitles and audio treatment as structured decisions.
+7. **Rendering** executes the media plan and records output metadata and timing.
+8. **Evaluation** reviews alignment, subtitles, timeline and technical quality, with bounded correction routing.
+
+The shared state connects the scene evidence to the script, voice specification, edit plan and final render. Explicit timing constraints and correction limits make intermediate decisions inspectable rather than hiding the workflow behind one prompt.
+
+## Data and credentials
+
+![Public, browser-local and private server data boundaries](docs/assets/data-boundaries.svg)
+
+This curated public snapshot excludes the original development history, provider credentials, runtime workspaces, logs, uploaded customer data and private deployment configuration. `.env.example` contains placeholders only. Provider keys belong in **server environment variables**, never in frontend bundles or public project files.
+
+Run `python tools/privacy_check.py` before publishing. It scans the working tree and reachable Git blobs without printing credential values. Optional local-only comparison against a private environment file is documented in [SECURITY.md](docs/SECURITY.md). A scan supplements human review; it is not a guarantee that arbitrary media or text contains no private information.
+
+## Recorded system walkthrough
+
+[![Play the system walkthrough](docs/assets/reference-poster.jpg)](https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/?view=system)
+
+Open **System architecture → System walkthrough** in the workspace, or [download the MP4](docs/assets/nesto-system-overview.mp4). The recording introduces the workflow and includes an actual saved local render. Speech is reconstructed from saved TTS files and recorded timing; background music is omitted. This recording does not rerun the AI pipeline. See [media provenance](docs/MEDIA_NOTES.md).
+
+## Run locally
+
+For the browser workspace, no package installation or API key is needed:
+
+```bash
+python -m http.server 8080 --directory docs
 ```
 
-Every stage reads and writes structured project state. LLM calls handle visual interpretation and language-heavy decisions; timing, constraints, media execution, and much of the routing are deterministic. Timeline rewriting and final review have explicit iteration bounds.
-
-## Engineering focus
-
-- **Grounded content:** narration is linked to the scene inventory and property brief.
-- **Temporal consistency:** narration budgets, measured TTS durations, and render timing are coordinated across stages.
-- **Inspectable outputs:** intermediate planning, scripts, voice specifications, timelines, and evaluation feedback remain structured artifacts.
-- **Human review:** the Studio exposes preview, timeline, segment inspection, and script revision workflows.
-- **Modular execution:** FastAPI services, a Next.js frontend, and a separate worker support the production pipeline.
-
-## Source layout
-
-```text
-system/backend/agents/   Eight agent modules and their tests
-system/backend/api/      FastAPI service endpoints
-system/backend/workflow/ Orchestration and dependency handling
-system/frontend/         Next.js Studio
-system/worker/           Worker execution
-system/supabase/         Persistence schema and migrations
-configs/                 Workflow configuration
-docs/                    Demo, media notes, and local setup
-tools/                   Public demo build script
-```
-
-## Local setup
-
-Python 3.10+, Node.js 18.17+, and FFmpeg are required. Model inference and TTS use your own provider credentials.
+Open `http://localhost:8080`. To run private AI generation, use Python 3.10+, Node.js 18.17+, FFmpeg and your own compatible model/TTS providers:
 
 ```bash
 python -m venv .venv
@@ -84,22 +82,30 @@ cp .env.example .env
 PYTHONPATH=system uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open `http://127.0.0.1:8000/docs` for the API. For the Studio, invite setup, provider configuration, and worker startup, follow [LOCAL_SETUP.md](docs/LOCAL_SETUP.md).
+Follow [LOCAL_SETUP.md](docs/LOCAL_SETUP.md) for the Next.js Studio, invite setup and worker. Review access controls, storage permissions and provider settings before processing private footage.
+
+## Source map
+
+```text
+docs/                      Browser Production Studio and architecture diagrams
+system/frontend/           Private Next.js Studio
+system/backend/api/        FastAPI service endpoints
+system/backend/agents/     Eight specialized agent modules
+system/backend/workflow/   Orchestration and dependency handling
+system/worker/             Generation worker
+system/supabase/           Persistence schema and migrations
+configs/                   Workflow configuration
+tools/                     Publication scanner and diagram/media builders
+```
 
 ## Validation
 
-The public snapshot passes 54 existing timeline and evaluation tests:
-
 ```bash
+node --test docs/workbench-core.test.mjs
+python tools/privacy_check.py
 python -m pytest system/backend/agents/timeline/tests system/backend/agents/evaluation/tests -q
 ```
 
-The recorded demo was checked for 720p playback and chapter navigation. These checks cover the selected deterministic modules and the public presentation.
+The browser core tests cover project sanitization, source ranges, subtitle timing, scene splitting and recorded-voice checks. The existing timeline/evaluation suites contain **54 passing tests**. These checks do not certify an arbitrary provider deployment or the complete model-generation pipeline.
 
-## Repository scope
-
-This is a curated public source snapshot of the independent Nesto project, prepared for engineering review. The original development history, runtime workspaces, credentials, and uploaded customer/property data are outside this snapshot.
-
-No open-source license has been selected for the project code. Third-party dependencies and demonstration footage retain their respective terms. The sample media is separate from the code; see [MEDIA_NOTES.md](docs/MEDIA_NOTES.md).
-
-Created by **Jiasong Ye** · [LinkedIn](https://www.linkedin.com/in/jiasong-ye-a99211409/)
+No open-source license has been selected for the project code. Third-party dependencies and reference footage retain their respective terms. Media provenance is documented separately.

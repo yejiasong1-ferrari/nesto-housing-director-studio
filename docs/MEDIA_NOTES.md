@@ -1,6 +1,6 @@
-# Demo provenance
+# Media provenance
 
-The public project demo combines original Nesto title cards with a saved local v3.1 render:
+The recorded system walkthrough combines original Nesto title cards with a saved local v3.1 render:
 
 - **0–5 seconds:** Nesto project introduction.
 - **5–13 seconds:** responsibilities of the eight agent modules.
@@ -12,3 +12,5 @@ The output preview is exported at 1280×720. Narration is reconstructed from the
 The original sample walkthrough includes on-screen Morris Hong Kong / morris-hk.com identifiers. These are retained as part of the footage. Original footage and on-screen branding belong to their respective owners. The project demonstrates automated processing of sample material; it does not imply an affiliation, a property listing, or ownership of the original footage.
 
 The sample footage is separate from the project code. Supply footage and music that you are entitled to use when running your own production.
+
+The editable Harbor Residence reference uses the same approximately 55-second narrated output, without the introduction and closing cards. Scene names in the browser are generic room labels. The public fixture contains selected timing and narration fields only, without runtime paths, provider configuration or account metadata.

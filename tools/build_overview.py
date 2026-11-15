@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a narrated public demo from an existing local Nesto workspace.
+"""Build a narrated system overview from an existing local Nesto workspace.
 
 Requires FFmpeg. Provider calls are not made. Original footage credits remain
 visible; only the background music is replaced with the saved TTS-only track.
@@ -62,7 +62,7 @@ def main() -> None:
             "-ar", "48000", "-ac", "2", "-b:a", "128k", "-t", str(duration),
             "-movflags", "+faststart", str(output)]
     run(cmd)
-    with tempfile.TemporaryDirectory(prefix="nesto-demo-") as temp:
+    with tempfile.TemporaryDirectory(prefix="nesto-overview-") as temp:
         temp = Path(temp)
 
         def card(name: str, seconds: int, lines: list[tuple[str, int, int, int, str]],
@@ -88,7 +88,7 @@ def main() -> None:
         intro = card("intro", 5, [
             ("Nesto Housing Director", -1, 390, 52, "0x0b2947"),
             ("Eight agents. One production workflow.", -1, 472, 29, "0x826329"),
-            ("An independent AI engineering project by Jiasong Ye", -1, 552, 22, "0x4b5f70"),
+            ("Perception, reasoning and deterministic media execution", -1, 552, 22, "0x4b5f70"),
         ], brand=True)
         flow_lines = [
             ("From perception to production", 72, 65, 43, "0xf5f2e9"),
@@ -111,17 +111,17 @@ def main() -> None:
         flow = card("workflow", 8, flow_lines, dark=True)
         end = card("end", 4, [
             ("Explore the source. Inspect the workflow.", -1, 225, 40, "0x0b2947"),
-            ("github.com/yejiasong1-ferrari/nesto-housing-director-demo", -1, 325, 26, "0x826329"),
+            ("github.com/yejiasong1-ferrari/nesto-housing-director-studio", -1, 325, 26, "0x826329"),
             ("Recorded output from saved local project artifacts", -1, 405, 22, "0x4b5f70"),
         ])
         concat = temp / "concat.txt"
         concat.write_text("\n".join(f"file '{p.resolve()}'" for p in [intro, flow, output, end]))
         run(base + ["-f", "concat", "-safe", "0", "-i", str(concat), "-c", "copy",
-                    "-movflags", "+faststart", str(args.out / "nesto-demo.mp4")])
-    run(base + ["-ss", "18", "-i", str(args.out / "nesto-demo.mp4"), "-frames:v", "1",
-                "-q:v", "2", str(args.out / "demo-poster.jpg")])
+                    "-movflags", "+faststart", str(args.out / "nesto-system-overview.mp4")])
+    run(base + ["-ss", "18", "-i", str(args.out / "nesto-system-overview.mp4"), "-frames:v", "1",
+                "-q:v", "2", str(args.out / "reference-poster.jpg")])
     output.unlink()
-    print(f"Built public demo: {args.out / 'nesto-demo.mp4'}")
+    print(f"Built system overview: {args.out / 'nesto-system-overview.mp4'}")
 
 
 if __name__ == "__main__":

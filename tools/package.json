@@ -1,5 +1,7 @@
 {
-  "name": "nesto-demo-build-tools",
+  "name": "nesto-media-build-tools",
   "private": true,
-  "dependencies": { "@resvg/resvg-js": "2.6.2" }
+  "dependencies": {
+    "@resvg/resvg-js": "2.6.2"
+  }
 }

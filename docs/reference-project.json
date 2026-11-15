@@ -1,0 +1,87 @@
+{
+  "version": 2,
+  "format": "nesto-project",
+  "name": "Harbor Residence",
+  "brief": "Create a warm, measured property walkthrough. Lead with the harbor outlook, then show the living spaces, bedrooms and practical amenities. Keep narration grounded in visible features.",
+  "sourceKind": "reference",
+  "sourceDuration": 55.032,
+  "scenes": [
+    {
+      "id": "scene-1",
+      "name": "Sea-view bedroom",
+      "role": "TRANSITION",
+      "start": 0.0,
+      "end": 9.0,
+      "narration": "现在来到这间卧室，整面落地窗正对海景，高层视野开阔，白天采光充足。",
+      "voiceDuration": 8.33,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-2",
+      "name": "Living & dining",
+      "role": "SUPPORT",
+      "start": 9.0,
+      "end": 24.0,
+      "narration": "步入客厅，港湾、城市天际线与远山尽收眼底；窗边弧形窗台搭配黑色沙发与浅色地板，简约明亮，右侧还衔接了高脚餐桌与吧台组成的用餐角。",
+      "voiceDuration": 14.42,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-3",
+      "name": "Secondary bedroom",
+      "role": "TRANSITION",
+      "start": 24.0,
+      "end": 31.0,
+      "narration": "这间卧室同样拥有整面落地窗，窗外可见设施与远山轮廓。",
+      "voiceDuration": 5.76,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-4",
+      "name": "Workspace & storage",
+      "role": "SUPPORT",
+      "start": 31.0,
+      "end": 38.272,
+      "narration": "这间明亮卧室配有嵌入式书桌，白色推拉门衣柜和双人床。",
+      "voiceDuration": 6.07,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-5",
+      "name": "Bay-window bedroom",
+      "role": "SUPPORT",
+      "start": 38.272,
+      "end": 45.728,
+      "narration": "卧室配弧形大窗，多扇可开启，窗台作展示架。",
+      "voiceDuration": 5.26,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-6",
+      "name": "Kitchen",
+      "role": "HERO",
+      "start": 45.728,
+      "end": 51.872,
+      "narration": "厨房有黑色台面与燃气灶，窗边引入自然光。",
+      "voiceDuration": 5.54,
+      "voiceDirty": false,
+      "effect": "none"
+    },
+    {
+      "id": "scene-7",
+      "name": "Bathroom",
+      "role": "SUPPORT",
+      "start": 51.872,
+      "end": 55.032,
+      "narration": "卫生间配备淋浴和马桶。",
+      "voiceDuration": 2.76,
+      "voiceDirty": false,
+      "effect": "none"
+    }
+  ]
+}

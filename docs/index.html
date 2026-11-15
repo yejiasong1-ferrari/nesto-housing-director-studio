@@ -3,92 +3,544 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
-    <title>Nesto — Production Studio</title>
+    <title>Nesto Housing Director — System Walkthrough</title>
     <meta
       name="description"
-      content="Nesto Production Studio: a video project workspace with storyboard editing, a timeline, eight-agent architecture, local rendering, and private server-side AI processing."
+      content="An eight-agent system for turning property walkthrough footage into narrated real estate videos. Source code, architecture, and recorded output."
     />
     <meta
       property="og:title"
-      content="Nesto Housing Director — Production Studio"
+      content="Nesto Housing Director — Multi-Agent Video Production"
     />
     <meta
       property="og:description"
-      content="A complete workspace for property video production. Import footage, edit scenes, inspect the agent workflow, and export your project."
+      content="Eight specialized agents. One inspectable video production workflow. Watch the recorded walkthrough and explore the source code."
     />
     <meta
       property="og:image"
       content="https://yejiasong1-ferrari.github.io/nesto-housing-director-studio/assets/nesto-logo.png"
     />
     <link rel="icon" href="assets/nesto-icon.png" />
-    <link rel="stylesheet" href="studio.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #071626;
+        --panel: #102337;
+        --ink: #f5f2e9;
+        --muted: #aec0ce;
+        --gold: #d7ad60;
+        --line: #263c50;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          16px/1.65 system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+      main,
+      header,
+      footer {
+        max-width: 1160px;
+        margin: auto;
+        padding: 28px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+      }
+      .brand img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+      }
+      .nav {
+        display: flex;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .nav a {
+        text-decoration: none;
+      }
+      .hero {
+        padding: 44px 0 28px;
+        max-width: 880px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      h1 {
+        font-size: clamp(36px, 5.5vw, 65px);
+        line-height: 1.12;
+        letter-spacing: -0.045em;
+        margin: 18px 0 24px;
+        font-weight: 650;
+      }
+      h2 {
+        font-size: 28px;
+        letter-spacing: -0.025em;
+        margin: 36px 0 12px;
+      }
+      p {
+        color: var(--muted);
+      }
+      .lead {
+        max-width: 760px;
+        font-size: 18px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        padding: 11px 18px;
+        border-radius: 9px;
+        text-decoration: none;
+        background: var(--panel);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .primary {
+        background: var(--gold);
+        color: #112235;
+        border-color: var(--gold);
+      }
+      .player {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 20px 80px #0004;
+        margin-top: 26px;
+      }
+      video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #071626;
+      }
+      .caption {
+        background: var(--panel);
+        padding: 16px 20px;
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .chapters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 16px 0 30px;
+      }
+      .chapters button {
+        font: inherit;
+        font-size: 12px;
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 7px 13px;
+        cursor: pointer;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        padding: 21px;
+      }
+      .number {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--gold);
+      }
+      h3 {
+        margin: 7px 0;
+        font-size: 18px;
+      }
+      .card p {
+        font-size: 14px;
+        margin: 0;
+      }
+      .flow {
+        padding: 22px;
+        border-left: 2px solid var(--gold);
+        background: #0d2032;
+        border-radius: 0 9px 9px 0;
+        margin: 24px 0;
+        color: var(--muted);
+      }
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin: 28px 0 48px;
+      }
+      .features p {
+        font-size: 14px;
+      }
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+      .stack span {
+        font-size: 12px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 5px 10px;
+        color: var(--muted);
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 30px;
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      footer p {
+        margin: 0;
+        max-width: 720px;
+      }
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 4px;
+      }
+      @media (max-width: 850px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .features {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .nav {
+          gap: 13px;
+        }
+        main,
+        header,
+        footer {
+          padding: 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .brand {
+          font-size: 13px;
+        }
+        .nav a:first-child {
+          display: none;
+        }
+        .hero {
+          padding-top: 22px;
+        }
+        footer {
+          flex-direction: column;
+        }
+      }
+      figure {
+        margin: 26px 0;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0d1825;
+      }
+      .architecture {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      figcaption {
+        padding: 12px 18px;
+        color: var(--muted);
+        font-size: 12px;
+        border-top: 1px solid var(--line);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      section {
+        scroll-margin-top: 24px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="shell">
-      <aside class="sidebar">
-        <a class="brand" href="./" aria-label="Nesto Studio"
-          ><img src="assets/nesto-icon.png" alt="Nesto" />
-          <div><b>nesto</b><small>PRODUCTION STUDIO</small></div></a
+    <header>
+      <div class="brand">
+        <img src="assets/nesto-icon.png" alt="Nesto logo" />NESTO HOUSING
+        DIRECTOR
+      </div>
+      <nav class="nav" aria-label="Main">
+        <a href="#architecture">Architecture</a
+        ><a
+          href="https://github.com/yejiasong1-ferrari/nesto-housing-director-studio"
+          >GitHub ↗</a
         >
-        <div class="section-label">Workspace</div>
-        <button disabled class="nav-button active" data-view="studio">
-          ◫ <span>Production studio</span></button
-        ><button disabled class="nav-button" data-view="projects">
-          ▤ <span>Projects</span>
-        </button>
-        <div class="section-label">Intelligence</div>
-        <button disabled class="nav-button" data-view="workflow">
-          ⌘ <span>Agent workflow</span></button
-        ><button disabled class="nav-button" data-view="system">
-          ◇ <span>System architecture</span></button
-        ><button disabled class="nav-button" data-view="settings">
-          ⚙ <span>Connections & privacy</span>
-        </button>
-        <div class="sidebar-bottom">
-          <p><span class="dot"></span>Browser-local workspace</p>
-          <p>Video and edits stay on this device.</p>
-          <a
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Multi-agent video production system</div>
+        <h1>From walkthrough footage<br />to a property story.</h1>
+        <p class="lead">
+          Eight specialized agents coordinate visual understanding, narrative
+          planning, voice direction, temporal alignment, editing, rendering, and
+          quality review.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#watch">Watch the video</a
+          ><a
+            class="button"
             href="https://github.com/yejiasong1-ferrari/nesto-housing-director-studio"
-            target="_blank"
-            rel="noopener"
-            >Source repository ↗</a
+            >Explore the source code ↗</a
           >
         </div>
-      </aside>
-      <header class="topbar">
-        <div class="breadcrumb">
-          Workspace <b id="current-view">Production studio</b>
+      </section>
+      <section id="watch" aria-label="Recorded system walkthrough">
+        <div class="player">
+          <video
+            id="walkthrough"
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/reference-poster.jpg"
+          >
+            <source src="assets/nesto-system-overview.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+            <a href="assets/nesto-system-overview.mp4">Download the MP4</a>.
+          </video>
+          <div class="caption">
+            <span>Recorded v3.1 output · 720p · TTS narration</span
+            ><a href="assets/nesto-system-overview.mp4" download
+              >Download MP4 ↓</a
+            >
+          </div>
         </div>
-        <div class="top-actions">
-          <span class="tag" id="save-status" role="status"
-            >Loading workspace</span
-          ><button class="button" id="import-button" disabled>
-            Import video</button
-          ><button class="button primary" id="export-button" disabled>
-            Export project ↗
-          </button>
+        <div class="chapters">
+          <button type="button" data-time="0">00:00 Introduction</button
+          ><button type="button" data-time="5">00:05 Agent workflow</button
+          ><button type="button" data-time="13">00:13 Generated output</button>
         </div>
-      </header>
-      <main id="main" aria-live="polite">
-        <section class="panel" style="padding: 28px">
-          <span class="tag gold">OPENING WORKSPACE</span>
-          <h1 style="margin-top: 16px">Nesto Production Studio</h1>
-          <p class="muted">
-            Loading your project and the reference video. Imported footage
-            remains on your device.
-          </p>
-        </section>
-      </main>
-    </div>
-    <input class="hidden" type="file" id="video-file" accept="video/*" /><input
-      class="hidden"
-      type="file"
-      id="project-file"
-      accept=".json,application/json"
-    />
-    <div id="modal-root"></div>
-    <div id="toast" role="status"></div>
-    <script type="module" src="workbench.mjs"></script>
+      </section>
+      <section id="agents">
+        <div class="eyebrow">Perception → reasoning → execution</div>
+        <h2>One responsibility per agent.</h2>
+        <p>
+          All stages exchange structured artifacts through a shared Project
+          State. Deterministic services execute the media plan.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <span class="number">01 · PERCEIVE</span>
+            <h3>Vision</h3>
+            <p>
+              Segment rooms and extract visible facts into a reusable scene
+              inventory.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">02 · PLAN</span>
+            <h3>Planner</h3>
+            <p>
+              Interpret the brief and choose highlights, attention, and
+              narrative order.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">03 · WRITE</span>
+            <h3>Script</h3>
+            <p>
+              Generate scene-grounded narration with coverage and duration
+              checks.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">04 · DIRECT</span>
+            <h3>Voice</h3>
+            <p>
+              Plan speech style and pronunciation for a separate TTS execution
+              service.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">05 · ALIGN</span>
+            <h3>Timeline</h3>
+            <p>
+              Align footage and measured speech durations within the video
+              budget.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">06 · EDIT</span>
+            <h3>Editing</h3>
+            <p>
+              Specify pacing, transitions, subtitles, visual treatment, and
+              audio strategy.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">07 · EXECUTE</span>
+            <h3>Rendering</h3>
+            <p>
+              Turn the structured editing plan into an MP4 with deterministic
+              operations.
+            </p>
+          </article>
+          <article class="card">
+            <span class="number">08 · REVIEW</span>
+            <h3>Evaluation</h3>
+            <p>
+              Check alignment and quality, then route a bounded correction pass.
+            </p>
+          </article>
+        </div>
+        <div class="flow">
+          Footage + brief → scene facts → story + script → timed speech →
+          editing plan → rendered video → quality review
+        </div>
+      </section>
+      <section id="architecture">
+        <div class="eyebrow">System architecture</div>
+        <h2>From perception to production.</h2>
+        <p>
+          Explore how the private Studio, agents and execution services work
+          together.
+        </p>
+        <figure>
+          <img
+            class="architecture"
+            src="assets/system-overview.svg"
+            alt="System overview: public video presentation, private Studio, backend agents and production artifacts."
+          />
+          <figcaption>
+            System overview · human review, private computation and structured
+            artifacts.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            class="architecture"
+            src="assets/agent-workflow.svg"
+            alt="Eight-agent collaboration through shared project state and bounded correction routing."
+          />
+          <figcaption>
+            Agent collaboration · one shared state, eight responsibilities.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            class="architecture"
+            src="assets/data-boundaries.svg"
+            alt="Public source and recorded media are separate from private runtime files and server credentials."
+          />
+          <figcaption>
+            Data boundaries · curated public material, private processing.
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h2>Built around the whole workflow.</h2>
+        <div class="features">
+          <article>
+            <h3>Grounded decisions</h3>
+            <p>
+              Property descriptions follow the visible scene inventory and user
+              brief.
+            </p>
+          </article>
+          <article>
+            <h3>Inspectable timing</h3>
+            <p>
+              Scripts, measured voice durations, and scene timing remain
+              available as structured artifacts.
+            </p>
+          </article>
+          <article>
+            <h3>Practical production</h3>
+            <p>
+              A FastAPI service, Next.js Studio, and separate worker connect
+              planning to media execution.
+            </p>
+          </article>
+        </div>
+        <div class="stack">
+          <span>Python</span><span>FastAPI</span><span>Next.js</span
+          ><span>Multimodal LLMs</span><span>TTS</span
+          ><span>MoviePy / FFmpeg</span><span>Shared project state</span>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Public viewing only · video playback and system diagrams. Playback is
+        prerecorded. The sample walkthrough retains its original third-party
+        on-screen credits.
+        <a
+          href="https://github.com/yejiasong1-ferrari/nesto-housing-director-studio/blob/main/docs/MEDIA_NOTES.md"
+          >Media provenance</a
+        >.
+      </p>
+      <a
+        href="https://github.com/yejiasong1-ferrari/nesto-housing-director-studio"
+        >Source code ↗</a
+      >
+    </footer>
+    <script>
+      document.querySelectorAll("[data-time]").forEach((button) =>
+        button.addEventListener("click", () => {
+          const video = document.getElementById("walkthrough");
+          video.currentTime = Number(button.dataset.time);
+          video.play().catch(() => {});
+          video.scrollIntoView({ behavior: "smooth", block: "center" });
+        }),
+      );
+    </script>
   </body>
 </html>

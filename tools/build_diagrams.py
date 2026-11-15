@@ -27,15 +27,15 @@ def save(name,parts):OUT.joinpath(name).write_text('\n'.join(parts+['</svg>'])+'
 
 s=start('System overview','Three planes connect human intent, private computation and inspectable artifacts.',610)
 s += [text(36,108,'01 / INTERACTION',11,GOLD),text(427,108,'02 / PRIVATE PROCESSING',11,GOLD),text(850,108,'03 / ARTIFACTS',11,GOLD),
-      box(36,128,330,168,'Production Studio',['Import local video and a director brief','Review scenes, narration and timing','Edit, validate and export on-device'],'PUBLIC WORKSPACE · NO PROVIDER KEYS'),
-      box(36,352,330,160,'Next.js private Studio',['Authenticated job creation','Human review and script revisions','Private media upload and preview'],'PRIVATE DEPLOYMENT',GREEN),
+      box(36,128,330,168,'Private Next.js Studio',['Footage, brief and property metadata','Authenticated job creation','Human review and script revisions'],'SEPARATE PRIVATE DEPLOYMENT'),
+      box(36,352,330,160,'Public project page',['Recorded system walkthrough','Eight-agent workflow and diagrams','Source code and media provenance'],'VIDEO PLAYBACK ONLY · NO UPLOAD',GREEN),
       box(427,128,350,168,'FastAPI + worker',['API contracts and job orchestration','Vision, planning, script and voice','Timeline, editing, render and review'],'EIGHT AGENTS · SHARED PROJECT STATE'),
       box(427,352,350,160,'Execution services',['Model inference and speech synthesis','MoviePy / FFmpeg media processing','Measured audio and render timing'],'SERVER ENVIRONMENT CREDENTIALS',GREEN),
       box(850,128,274,168,'Structured project state',['Scene evidence and director plan','Narration and voice specifications','Timeline and evaluation reports'],'INSPECTABLE DECISIONS'),
-      box(850,352,274,160,'Production artifacts',['Narrated video and subtitles','Portable project JSON','Local or configured object storage'],'RUNTIME DATA EXCLUDED FROM GIT',GREEN),
-      arrow(366,432,427,432),arrow(777,210,850,210),arrow(777,432,850,432),arrow(602,296,602,352),
-      path('M201 296 L201 324 L985 324 L985 352'),text(390,316,'Local editor exports directly; server jobs use the private Studio',12),
-      text(36,562,'PUBLIC WORKSPACE',11,GOLD),text(203,562,'Browser editing works independently. Model generation requires your configured private processing service.',13)]
+      box(850,352,274,160,'Production artifacts',['Narrated video and subtitles','Render timing and output metadata','Local or configured object storage'],'RUNTIME DATA EXCLUDED FROM GIT',GREEN),
+      arrow(366,210,427,210),arrow(777,210,850,210),arrow(777,432,850,432),arrow(602,296,602,352),
+      path('M985 512 L985 539 L201 539 L201 512'),text(394,531,'Selected recording published for viewing',12),
+      text(36,581,'PUBLIC PRESENTATION',11,GOLD),text(215,581,'Recorded playback and architecture only. Upload and processing remain in the private Studio.',13)]
 save('system-overview.svg',s)
 
 s=start('Agent collaboration','Eight specialized responsibilities share one project state; execution stays separate from reasoning.',640)
@@ -57,12 +57,12 @@ for x,label,color in [(36,'PUBLIC REPOSITORY',GOLD),(427,'YOUR BROWSER / DEVICE'
  s += [f'<rect x="{x}" y="110" width="306" height="390" rx="12" fill="none" stroke="#314457" stroke-dasharray="5 5"/>',text(x+20,141,label,12,color)]
 s += [box(56,164,266,130,'Curated source',['Application and agent code','Generic configuration templates'],'NO RUNTIME WORKSPACES'),
       box(56,326,266,130,'Publication checks',['Working tree + Git history scan','Secret-value comparison locally'],'NO SECRETS IN SCAN OUTPUT'),
-      box(447,164,266,130,'Local workspace',['Imported video as browser Blobs','Storyboard edits in IndexedDB'],'NO AUTOMATIC MEDIA UPLOAD',GREEN),
-      box(447,326,266,130,'Explicit exports',['Allowlisted project JSON + SRT','Browser-rendered video'],'NO TOKENS OR SOURCE PATHS',GREEN),
+      box(447,164,266,130,'Recorded presentation',['Previously rendered video','Project and architecture diagrams'],'VIEWING ONLY · NO FILE INPUT',GREEN),
+      box(447,326,266,130,'Video playback',['Play, seek and download recording','No generation or editing controls'],'NO PROJECT OR CREDENTIAL STORAGE',GREEN),
       box(838,164,266,130,'Environment + access',['Provider API keys on the server','Authenticated private Studio'],'NEVER BUNDLED INTO FRONTEND'),
       box(838,326,266,130,'Processing and storage',['Model / TTS calls from the worker','Private runtime media and artifacts'],'CONFIGURED BY THE OPERATOR'),
       arrow(342,220,427,220),arrow(580,294,580,326),arrow(971,294,971,326),
-      text(36,554,'LOCAL EDITING',11,GREEN),text(191,554,'Public workspace edits stay on-device. Server processing uses a separate private deployment.',13),
+      text(36,554,'PUBLIC VIEWING',11,GREEN),text(191,554,'The public page does not accept uploads or call the private processing service.',13),
       text(36,583,'BEFORE PUBLISHING',11,GOLD),text(191,583,'Scan source and history. Review your media, metadata and permissions before sharing your own output.',13)]
 save('data-boundaries.svg',s)
 print('Built 3 system diagrams.')

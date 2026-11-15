@@ -1,12 +1,10 @@
 # Data and publication controls
 
-## Public workspace
+## Public project page
 
-The static Production Studio makes no model-provider requests. It imports video into browser-local IndexedDB, edits structured scene data, and can export JSON, subtitles and a video rendered on the device. Browser storage is not an encrypted vault and may be cleared by the browser; retain your own footage and exports.
+The public page plays a prerecorded video and displays project information and architecture diagrams. It has no video-upload control, editor, generation endpoint or provider-key input. It does not store visitor media, project data or credentials in browser storage, and makes no model-provider requests.
 
-Imported project JSON is mapped to an explicit schema. Remote media URLs, file paths, credentials and arbitrary properties are discarded. User-provided text is escaped before it is displayed. Project narration and brief fields are content fields: do not paste secrets into them.
-
-The connection checker accepts an HTTP(S) base URL without credentials, query parameters or fragments, keeps it in memory only, and makes a credential-free health request when selected. It does not authenticate generation jobs or upload media.
+Footage input and processing belong to a separately configured private Studio, backend and worker. The public page does not connect to that deployment.
 
 ## Private generation service
 
